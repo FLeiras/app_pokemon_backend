@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  poke_back:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongoPoke
+  mongoPoke:
+    image: mongo:4
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=fede
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
